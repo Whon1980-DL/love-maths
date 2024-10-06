@@ -16,6 +16,12 @@ document.addEventListener("DOMContentLoaded", function() {
         })
     }
 
+    document.getElementById("answer-box").addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            checkAnswer();
+        }
+    });
+
     runGame("addition");
 
 })
@@ -25,6 +31,10 @@ document.addEventListener("DOMContentLoaded", function() {
  * and after the user's amswer has been processed
  */
 function runGame(gameType) {
+
+    document.getElementById("answer-box").value = ("");
+    // Enable the cursor to be in the ansewr-box everytime the runGame function is called
+    document.getElementById("answer-box").focus();
 
     // Creates two random numbers between 1 and 25
     let num1 = Math.floor(Math.random() * 25) +1;
@@ -58,7 +68,6 @@ function checkAnswer() {
     if (isCorrect) {
         alert("Hey! You got it right!:D");
         incrementScore();
-        document.getElementById("answer-box").value = ("");
     } else {
         alert(`Awwww.... you answered ${userAnswer}. The correct answer was ${calculatedAnswer[0]}!`);
         incrementWrongAnswer();
